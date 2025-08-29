@@ -1,0 +1,7 @@
+procs:
+  ollama-server:
+    shell: "ollama serve"
+  ollama-model:
+    shell: "#sleep 3 && # ollama run gpt-oss:20b"
+  streamlit:
+    shell: "uv run streamlit run jd_reader.py"

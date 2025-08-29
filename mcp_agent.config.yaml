@@ -1,0 +1,30 @@
+$schema: ../../../schema/mcp-agent.config.schema.json
+
+execution_engine: asyncio
+logger:
+  transports: [console, file]  # Enable both console and file logging
+  level: debug  # Capture all chat interactions including LLM calls
+  progress_display: true  # Show progress in console
+  path_settings:
+    path_pattern: "logs/mcp-agent-{unique_id}.jsonl"
+    unique_id: "timestamp"
+    timestamp_format: "%Y%m%d_%H%M%S"
+  batch_size: 100
+  flush_interval: 2
+  max_queue_size: 2048
+  http_endpoint:
+  http_headers:
+  http_timeout: 5
+
+mcp:
+  servers:
+    fetch:
+      command: "uvx"
+      args: ["mcp-server-fetch"]
+    filesystem:
+      command: "npx"
+      args: ["-y", "@modelcontextprotocol/server-filesystem"]
+
+openai:
+  base_url: "http://localhost:11434/v1"
+  api_key: ollama
